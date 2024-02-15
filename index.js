@@ -8,11 +8,11 @@ import { ConfigureStore } from '@reduxjs/toolkit';
 
 
 const RootComponent = () => (
-    <MyContextProvider>
- <Provider store={store}>
+     <Provider store={store}>
+  <MyContextProvider>
     <App />
-  </Provider>,
     </MyContextProvider>
+  </Provider>
 
 );
 
