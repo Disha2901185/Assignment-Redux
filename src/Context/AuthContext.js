@@ -10,7 +10,9 @@ const MyContextProvider = ({ children }) => {
     setCount(count+1)
   }
   const removeCount=()=>{
+    if(count>=1){
     setCount(count-1)
+    }
   }
 
 

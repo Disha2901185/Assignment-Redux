@@ -36,7 +36,7 @@ function App() {
   return (
     // <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Profile">
         {/* // screenOptions={{ */}
         {/* // header: () => <Headers />, // }}> */}
         {userData ? (

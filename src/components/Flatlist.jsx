@@ -15,15 +15,7 @@ import {addToCart} from '../Store/cartSlice';
 
 const DATA = [
   {
-    id: '0',
-    author: 'Alejandro Escamilla',
-    width: 5000,
-    height: 3333,
-    url: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-    download_url: 'https://picsum.photos/id/0/5000/3333',
-  },
-  {
-    id: '6',
+    id: '1',
     author: 'Alejandro Escamilla',
     width: 5000,
     height: 3333,
@@ -31,7 +23,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/6/5000/3333',
   },
   {
-    id: '7',
+    id: '2',
     author: 'Alejandro Escamilla',
     width: 4728,
     height: 3168,
@@ -39,7 +31,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/7/4728/3168',
   },
   {
-    id: '8',
+    id: '3',
     author: 'Alejandro Escamilla',
     width: 5000,
     height: 3333,
@@ -47,7 +39,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/8/5000/3333',
   },
   {
-    id: '9',
+    id: '4',
     author: 'Alejandro Escamilla',
     width: 5000,
     height: 3269,
@@ -55,7 +47,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/9/5000/3269',
   },
   {
-    id: '10',
+    id: '5',
     author: 'Paul Jarvis',
     width: 2500,
     height: 1667,
@@ -64,7 +56,7 @@ const DATA = [
   },
 
   {
-    id: '12',
+    id: '6',
     author: 'Paul Jarvis',
     width: 2500,
     height: 1667,
@@ -72,7 +64,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/12/2500/1667',
   },
   {
-    id: '13',
+    id: '7',
     author: 'Paul Jarvis',
     width: 2500,
     height: 1667,
@@ -80,7 +72,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/13/2500/1667',
   },
   {
-    id: '14',
+    id: '8',
     author: 'Paul Jarvis',
     width: 2500,
     height: 1667,
@@ -88,7 +80,7 @@ const DATA = [
     download_url: 'https://picsum.photos/id/14/2500/1667',
   },
   {
-    id: '15',
+    id: '9',
     author: 'Paul Jarvis',
     width: 2500,
     height: 1667,
@@ -97,7 +89,7 @@ const DATA = [
   },
 
   {
-    id: '29',
+    id: '10',
     author: 'Go Wild',
     width: 4000,
     height: 2670,
@@ -106,47 +98,78 @@ const DATA = [
   },
 ];
 
-const Item = ({url, author, styleImage, item}) => {
+// const Item = ({url, author, styleImage, item}) => {
+//   const {count, addCount, removeCount} = useContext(MyContext);
+//   const dispatch = useDispatch();
+//   const addCart = product => {
+//     dispatch(addToCart(product));
+//     addCount();
+//   };
+//   return (
+//     <View style={styles.item}>
+//       <Image style={styleImage} source={{uri: url}} />
+//       <Text style={styles.title}>{author}</Text>
+//       <View>
+//         <TouchableOpacity onPress={removeCount}>
+//           <Image
+//             style={styles.dlt}
+//             source={{
+//               uri: 'https://e7.pngegg.com/pngimages/228/54/png-clipart-logo-trademark-brand-delete-button-miscellaneous-text.png',
+//             }}
+//           />
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={() => addCart({item})}>
+//           <Image
+//             style={styles.add}
+//             source={{
+//               uri: 'https://as1.ftcdn.net/v2/jpg/02/76/20/22/1000_F_276202225_6M6NkvbXpTslZZjI3vRPTgYrgFM7NGwJ.jpg',
+//             }}
+//           />
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   );
+// };
+const Flatlist = ({horizontal, styleImage}) => {
   const {count, addCount, removeCount} = useContext(MyContext);
   const dispatch = useDispatch();
   const addCart = product => {
-    addCount();
     dispatch(addToCart(product));
+    addCount();
   };
-  return (
-    <View style={styles.item}>
-      <Image style={styleImage} source={{uri: url}} />
-      <Text style={styles.title}>{author}</Text>
-      <View>
-        <TouchableOpacity onPress={removeCount}>
-          <Image
-            style={styles.dlt}
-            source={{
-              uri: 'https://e7.pngegg.com/pngimages/228/54/png-clipart-logo-trademark-brand-delete-button-miscellaneous-text.png',
-            }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => addCart({item})}>
-          <Image
-            style={styles.add}
-            source={{
-              uri: 'https://as1.ftcdn.net/v2/jpg/02/76/20/22/1000_F_276202225_6M6NkvbXpTslZZjI3vRPTgYrgFM7NGwJ.jpg',
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-};
-const Flatlist = ({horizontal, styleImage}) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
-        renderItem={({item, id}) => (
-          <Item url={item.url} author={item.author} item={item} styleImage={styleImage} />
+        // renderItem={({item, id}) => (
+        //   <Item url={item.url} author={item.author} item={item} styleImage={styleImage} />
+        // )}
+        renderItem={({item}) => (
+          <View style={styles.item}>
+            <Image style={styleImage} source={{uri: item.url}} />
+            <Text style={styles.title}>{item.author}</Text>
+
+            <View>
+              {/* <TouchableOpacity onPress={removeCount}>
+                <Image
+                  style={styles.dlt}
+                  source={{
+                    uri: 'https://e7.pngegg.com/pngimages/228/54/png-clipart-logo-trademark-brand-delete-button-miscellaneous-text.png',
+                  }}
+                />
+              </TouchableOpacity> */}
+              <TouchableOpacity onPress={() => addCart(item)}>
+                <Image
+                  style={styles.add}
+                  source={{
+                    uri: 'https://as1.ftcdn.net/v2/jpg/02/76/20/22/1000_F_276202225_6M6NkvbXpTslZZjI3vRPTgYrgFM7NGwJ.jpg',
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
         horizontal={horizontal}
         // showsHorizontalScrollIndicator={false}
       />
